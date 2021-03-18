@@ -18,3 +18,21 @@ This module is part of the [AWS Cloud Development Kit](https://github.com/aws/aw
 ```ts
 import macie = require('@aws-cdk/aws-macie');
 ```
+
+Enable Macie
+
+```ts
+import * as cdk from '@aws-cdk/core';
+import * as macie from '@aws-cdk/aws-macie';
+
+export class MacieStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const enableMacie = new macie.CfnSession(this, "macie-cdk", {
+      findingPublishingFrequency: "FIFTEEN_MINUTES",
+      status: "ENABLED"
+    });
+  }
+}
+```
